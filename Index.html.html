@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Sicilië 2026">
+<meta name="theme-color" content="#0f6f78">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f6f78'/%3E%3Ctext x='50' y='66' font-size='55' text-anchor='middle'%3E%F0%9F%8D%8B%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230f6f78'/%3E%3Ctext x='50' y='66' font-size='55' text-anchor='middle'%3E%F0%9F%8D%8B%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Sicili%C3%AB%20Camperdraaiboek%202026%22%2C%22short_name%22%3A%22Sicili%C3%AB%202026%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f3ede1%22%2C%22theme_color%22%3A%22%230f6f78%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%2520xmlns%3D%2527http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%2527%2520viewBox%3D%25270%25200%2520100%2520100%2527%253E%253Crect%2520width%3D%2527100%2527%2520height%3D%2527100%2527%2520rx%3D%252722%2527%2520fill%3D%2527%25230f6f78%2527%2F%253E%253Ctext%2520x%3D%252750%2527%2520y%3D%252766%2527%2520font-size%3D%252755%2527%2520text-anchor%3D%2527middle%2527%253E%25F0%259F%258D%258B%253C%2Ftext%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22any%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+<title>Sicilië camperdraaiboek · 7–21 juli 2026</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<style>
+:root{--ink:#17312c;--muted:#68736f;--sand:#f3ede1;--paper:#fffdf8;--sea:#0f6f78;--orange:#c96f3b;--line:#ddd4c4;--wine:#6d3d35;--lemon:#e3b23c}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font:16px/1.55 Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:var(--sand);color:var(--ink)}
+a{color:var(--sea);font-weight:750}.hero{position:relative;background:linear-gradient(135deg,#0f6f78,#17312c);color:#fff;padding:48px 22px 30px;overflow:hidden;border-bottom:6px solid var(--lemon);box-shadow:inset 0 -6px 0 var(--orange)}.hero::after{content:"🍋";position:absolute;right:-18px;top:-28px;font-size:9rem;opacity:.14;transform:rotate(18deg)}.wrap{max-width:1180px;margin:auto;position:relative}
+.hero h1{font-size:clamp(2.5rem,7vw,5.5rem);line-height:.95;margin:.2em 0}.hero p{max-width:850px;font-size:1.1rem}
+.badges{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+.badge{background:#ffffff14;border:1px solid #ffffff3d;border-radius:14px;padding:12px 14px;font-size:.86rem;line-height:1.3}
+.badge b{display:block;font-size:1rem;margin-bottom:2px}
+.badge span{opacity:.8;font-size:.78rem}
+nav{position:sticky;top:0;z-index:1000;background:#fffdf8ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;padding:14px max(16px,calc((100vw - 1180px)/2))}
+nav button{border:1px solid var(--line);background:var(--paper);padding:9px 15px;border-radius:13px;font-weight:800;color:var(--ink);cursor:pointer;font-size:.87rem;box-shadow:0 3px 9px #1d302b0a;transition:.15s}
+nav button:hover{border-color:var(--sea);color:var(--sea)}
+nav button.active{background:var(--sea);color:#fff;border-color:var(--sea);box-shadow:0 5px 14px #0f6f7840}
+main{max-width:1180px;margin:auto;padding:28px 18px 70px}.page{display:none}.page.active{display:block}.page h2{font-size:clamp(1.8rem,4vw,3rem);margin:.2em 0}.lead{font-size:1.08rem;color:#45534f;max-width:900px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 7px 22px #1d302b0b}.card h3{margin:0 0 7px}.card.click{cursor:pointer;transition:.18s}.card.click:hover{transform:translateY(-2px);box-shadow:0 12px 30px #1d302b16}
+.btn{display:inline-block;text-decoration:none;background:var(--sea);color:#fff!important;padding:9px 13px;border-radius:999px;margin:5px 5px 0 0}.btn.alt{background:#e8f0ea;color:var(--ink)!important}.btn.wine{background:var(--wine)}
+.notice{background:#fff1e7;border:1px solid #e7b78f;border-radius:16px;padding:16px;margin:16px 0}.good{background:#eef4e7;border-radius:16px;padding:16px;margin:16px 0}.verdict{background:var(--ink);color:#fff;border-radius:20px;padding:22px;margin:18px 0}
+#routeMap{height:590px;border-radius:18px}.mapbox{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:14px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);margin:-14px -14px 14px}.stat{background:var(--paper);padding:15px;text-align:center}.stat b{display:block;color:var(--sea);font-size:1.35rem}.stat span{font-size:.75rem;text-transform:uppercase;color:var(--muted)}
+.controls{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;margin:15px 0}.toggle{padding:10px 0;border-bottom:1px solid var(--line)}.toggle label{font-weight:850}.toggle input{transform:scale(1.2);margin-right:8px}
+.nights{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:13px}.night{border:1px solid var(--line);border-radius:12px;padding:10px}.night label{display:block;font-weight:800}.night input{width:65px;padding:6px;margin-top:5px}.legs{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}.leg{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:12px}
+.num{background:var(--sea);color:#fff;border:3px solid #fff;border-radius:50%;width:32px!important;height:32px!important;display:flex!important;align-items:center;justify-content:center;font-weight:900;box-shadow:0 2px 8px #0005}.city{background:var(--orange);border:3px solid #fff;border-radius:50%;width:18px!important;height:18px!important}
+.dest-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}.dest-copy{background:var(--paper);border-radius:22px;padding:24px;border:1px solid var(--line)}.photo-frame{background:#d8ddd9;border-radius:22px;overflow:hidden;min-height:420px;position:relative}.photo-frame iframe{width:100%;height:100%;min-height:420px;border:0}.photo-fallback{position:absolute;inset:auto 12px 12px;background:#fffef4e8;border-radius:12px;padding:10px;font-size:.82rem}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin:15px 0}.fact{background:#e9f2ef;border-radius:13px;padding:12px}.fact b{display:block;color:var(--sea)}
+.hotspots{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.spot{background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:16px;padding:16px}.spot h3{margin:0 0 5px;font-size:1.02rem}.spot p{margin:0 0 9px}.spot.cat-zien{border-left-color:var(--sea)}.spot.cat-eten{border-left-color:var(--orange)}.spot.cat-sfeer{border-left-color:var(--wine)}.spot.cat-onderweg{border-left-color:var(--ink);border-left-style:dashed}
+.cattag{display:inline-flex;align-items:center;gap:5px;font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;padding:3px 9px;border-radius:999px;margin-bottom:7px}
+.cattag.cat-zien{background:#e7f2f1;color:var(--sea)}.cattag.cat-eten{background:#fbe9dd;color:var(--orange)}.cattag.cat-sfeer{background:#f1e3e0;color:var(--wine)}.cattag.cat-onderweg{background:#e7e6e2;color:var(--ink)}
+.spot .sl{display:inline-block;font-size:.8rem;font-weight:800;text-decoration:none;border-bottom:2px solid currentColor;cursor:pointer}
+.spot.click{cursor:pointer;transition:.18s}.spot.click:hover{transform:translateY(-2px);box-shadow:0 12px 26px #1d302b14}
+.day{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px;margin:11px 0}.day h3{margin:0 0 8px}.day p{margin:7px 0}.pill{display:inline-block;background:#e7f1ef;border-radius:999px;padding:4px 9px;font-size:.8rem;font-weight:800}
+.tipbox{background:#fff9ec;border:1px solid #eed9a8;border-radius:16px;padding:14px 16px;margin:14px 0;font-size:.94rem}.tipbox b{color:var(--orange)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin:10px 0;font-size:.82rem;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.winebox{background:linear-gradient(135deg,#4b2c28,#7c4a3b);color:#fff;border-radius:20px;padding:22px}.winebox a{color:#fff}
+.small{font-size:.87rem;color:var(--muted)}table{width:100%;border-collapse:collapse;background:var(--paper)}th,td{padding:11px;border-bottom:1px solid var(--line);text-align:left}th{background:var(--ink);color:#fff}
+@media(max-width:820px){.grid,.dest-hero,.hotspots{grid-template-columns:1fr}.facts,.nights,.stats,.badges{grid-template-columns:repeat(2,1fr)}.legs{grid-template-columns:1fr}#routeMap{height:500px}.photo-frame{min-height:360px}}
+
+.summarybar{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+.summaryitem{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px}
+.summaryitem b{display:block;color:var(--sea);font-size:1.15rem}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+button.btn{border:0;cursor:pointer;font:inherit;font-weight:750}
+.routechoice{background:#edf5f3;border:1px solid #c7ddd8;border-radius:14px;padding:13px;margin:10px 0}
+.routechoice label{display:inline-block;margin:5px 14px 5px 0}
+.checklist{columns:2;column-gap:24px}.checkitem{break-inside:avoid;margin:8px 0}
+.checkitem input{transform:scale(1.15);margin-right:8px}
+.quicklinks{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 8px;font-size:.78rem;margin:2px}
+#printTitle{display:none}
+@media(max-width:820px){
+  .summarybar{grid-template-columns:repeat(2,1fr)}
+  .checklist{columns:1}
+
+  nav{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    gap:7px;
+    padding:8px 10px;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+
+  nav::-webkit-scrollbar{
+    display:none;
+  }
+
+  nav button{
+    flex:0 0 auto;
+    white-space:nowrap;
+    padding:8px 12px;
+    font-size:.82rem;
+    border-radius:12px;
+  }
+
+  .page h2{font-size:1.9rem}
+  .card{padding:16px}
+  .dest-copy{padding:18px}
+}
+
+/* iPhone/iPad Safari: forceer compact menu, ook als Safari een brede layout-viewport gebruikt */
+@supports (-webkit-touch-callout: none) {
+  nav{
+    display:block !important;
+    flex-wrap:nowrap !important;
+    white-space:nowrap !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    width:100% !important;
+    max-width:100% !important;
+    height:58px !important;
+    min-height:58px !important;
+    max-height:58px !important;
+    padding:8px 10px !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  nav button{
+    display:inline-block !important;
+    width:auto !important;
+    max-width:none !important;
+    white-space:nowrap !important;
+    margin:0 7px 0 0 !important;
+    padding:8px 12px !important;
+    font-size:.82rem !important;
+    line-height:1.4 !important;
+    vertical-align:top !important;
+  }
+}
+
+@media print{
+ nav,.hero,.toolbar,.btn,.controls,#routeMap,.photo-frame{display:none!important}
+ body{background:#fff;font-size:11pt}.page{display:block!important;page-break-before:always}
+ main{max-width:none;padding:0}.card,.day,.spot,.dest-copy,.winebox{box-shadow:none;break-inside:avoid}
+ #printTitle{display:block}.summarybar{grid-template-columns:repeat(4,1fr)}
+ a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap"><div style="text-transform:uppercase;letter-spacing:.15em;font-size:.78rem">Camperreis Sicilië</div>
+<h1>7–21 juli 2026</h1><p>Vanaf de Vemacar-balie aan de Via Montepellegrino zetten jullie koers naar kustdorpen, wijngaarden op de Etna en baroksteden die 's avonds oplichten in warm licht. Veertien nachten, één camper, en overal onderweg de geur van citrus en zee.</p>
+<div class="badges">
+<span class="badge"><b>7 juli · 15:00</b><span>Camper ophalen</span></span>
+<span class="badge"><b>21 juli · 11:00</b><span>Vlucht vanuit Palermo</span></span>
+<span class="badge"><b>14 nachten</b><span>Onderweg door Sicilië</span></span>
+<span class="badge"><b>Cefalù &amp; Siracusa</b><span>Bewust geen hoofdstop</span></span>
+</div></div></header>
+<nav id="nav"></nav>
+<main>
+<section class="page active" id="overzicht">
+<div id="printTitle"><h1>Sicilië camperreis · 7–21 juli 2026</h1></div>
+<h2>Jullie reis in één oogopslag</h2>
+<p class="lead">Laat de kust jullie route bepalen: rustige vissersdorpen, tafels met de voeten in het zand en steden die bij zonsondergang in goudkleurige steen oplichten. Onderweg wacht één bijzondere nacht tussen de wijngaarden van de Etna. In het zuidoosten combineren jullie Marzamemi, Vendicari en San Lorenzo vanaf Sunseabeach met Scicli, Modica en Ragusa Ibla vanaf Luminoso.</p>
+<div class="toolbar">
+<button class="btn" onclick="show('kaart')">Route instellen</button>
+<button class="btn alt" onclick="show('dagen')">Dagplanning openen</button>
+<button class="btn alt" onclick="window.print()">Print / bewaar als PDF</button>
+</div>
+<h3 style="margin:26px 0 4px">Alle stops op een rij</h3>
+<p class="lead" style="margin-top:0">Van het ophalen van de camper tot het inleveren, met de mooiste tussenstops onderweg. Tik op een blok voor camping, hotspots en route-info.</p>
+<div class="legend">
+<span><i style="background:var(--sea)"></i>Vaste stop</span>
+<span><i style="background:var(--orange)"></i>Optioneel</span>
+<span><i style="background:var(--wine)"></i>Kies één · alternatief</span>
+<span><i style="background:var(--ink)"></i>★ Onderweg (geen overnachting)</span>
+</div>
+<div class="hotspots" id="destinationCards"></div>
+<div class="good"><b>Zo gebruik je dit draaiboek:</b> bekijk de gekozen Variant A en nachten bij <b>Kaart & route</b> — die keuze blijft op dit apparaat bewaard. Open daarna <b>Dagplanning</b> voor de actuele data per stop.</div>
+</section>
+
+<section class="page" id="kaart"><h2>Routekaart & nachten configureren</h2>
+<p class="lead">De route loopt nu omgekeerd: Sant'Elia/Santa Flavia → Rais Gerbi/Finale → Etna Wine → Marzamemi → Marina di Modica → Punta Braccetto → Marsala → San Vito lo Capo → camper inleveren → luchthavenhotel in Cinisi. San Vito is bewust de grote finale. Verdeel precies 14 nachten en bekijk de ritten. Afstanden en netto rijtijd worden online via de wegroute berekend.</p>
+<div class="controls"><div class="nights" id="nightControls"></div>
+<div class="toolbar"><button class="btn alt" id="resetRoute">Herstel standaardroute</button></div>
+<div class="notice" id="nightWarning"></div></div>
+<div class="mapbox"><div class="stats"><div class="stat"><b id="totalKm">laden…</b><span>route km</span></div><div class="stat"><b id="totalTime">laden…</b><span>netto rijtijd</span></div><div class="stat"><b id="campCount">—</b><span>verblijfsplekken</span></div><div class="stat"><b id="nightCount">—</b><span>nachten</span></div></div><div id="routeMap"></div></div><div class="legs" id="routeLegs"></div>
+</section>
+
+<section class="page" id="dagen">
+<h2>Dagplanning</h2>
+<p class="lead">Deze planning volgt automatisch de campings en het aantal nachten uit de routeconfigurator. Zo lopen data en overnachtingen niet meer uit elkaar.</p>
+<div id="dynamicDays"></div>
+</section>
+
+<section class="page" id="praktisch"><h2>Praktisch onderweg</h2>
+<p class="lead">Zaken die niet in de dagplanning staan, maar wel het verschil maken met een camper in juli op Sicilië.</p>
+<div class="grid">
+<div class="card"><h3>🚐 ZTL-zones</h3><p>Ragusa Ibla, Modica, Scicli, Marsala, Erice en Palermo-centrum hebben ZTL's (verkeersbeperkte zones) met camera's. Parkeer buiten de zone op een van de aangewezen parkeerterreinen; een boete gaat naar het verhuurbedrijf en wordt later doorbelast.</p></div>
+<div class="card"><h3>💧 Camperservice</h3><p>Gebruik onderweg apps als Park4Night of CamperContact om waterpunten, stortplaatsen en overnachtingslocaties te vinden tussen de geboekte campings in, bijvoorbeeld bij een tussenstop op een rijdag.</p></div>
+<div class="card"><h3>🌡️ Hitte &amp; ritme</h3><p>Juli op Sicilië loopt op tot 33–38°C. Plan wandelingen (Zingaro, Monte Monaco, Alcantara, Madonie) vroeg of laat op de dag. Veel winkels sluiten tussen 13:00–16:00 voor de siësta; markten zijn 's ochtends het levendigst.</p></div>
+<div class="card"><h3>💶 Cash &amp; connectiviteit</h3><p>Op markten en bij kleinere trattoria's is contant geld handig; pin/contactloos werkt verder bijna overal. Regel een (e)SIM met voldoende data voor navigatie en download de routekaart-gebieden offline als back-up.</p></div>
+<div class="card"><h3>🚗 Rijden &amp; tol</h3><p>Autostrada's zijn tolwegen (contant of kaart bij de slagboom); binnenwegen door de Madonie en naar Segesta zijn gratis maar bochtig. Let op autovelox-snelheidscamera's bij dorpsranden.</p></div>
+<div class="card"><h3>🩹 Noodgevallen</h3><p>Europees alarmnummer <b>112</b> werkt overal in Italië voor ambulance, brandweer en politie. Bewaar de dichtstbijzijnde ziekenhuizen (Trapani, Palermo, Catania, Ragusa) offline in je kaarten-app.</p></div>
+<div class="card"><h3>🩴 Zee &amp; strand</h3><p>Kwallen (meduse) komen incidenteel voor op de noordkust; check lokaal bord/bemanning bij twijfel. Waterschoenen zijn handig bij zowel Alcantara als de rotsige stukken kust (Sampieri, Punta Secca).</p></div>
+<div class="card"><h3>🧭 Bewust wél overgeslagen</h3><p>Valle dei Templi (Agrigento) en Villa Romana del Casale (Piazza Armerina) liggen zuidelijker/centraler en passen niet zonder een fikse omweg in deze route. Taormina is wél goed te overwegen als extra dagtrip vanaf Tindari of Etna Wine (circa 45–60 min rijden) als er op die dagen ruimte in het programma is.</p></div>
+</div>
+</section>
+
+<section class="page" id="wijn"><h2>🍋 De twee wijnervaringen</h2>
+<p class="lead">Twee heel verschillende wijnkarakters: Cantine Fina voor het landschap en de zonsondergang boven de zoutpannen, Etna Wine voor de sfeer van slapen tússen de wijngaarden op vulkanische grond.</p>
+<div class="grid"><div class="winebox"><h3>Cantine Fina · Marsala</h3><p>West-Sicilië, heuvels en uitzicht richting Stagnone/Egadische eilanden. Dit is de landschappelijke winery-stop.</p><p class="small" style="color:#f3ede1"><b>Tip:</b> reserveer de proeverij voor het late middaguur, zodat je aansluitend het gouden licht over de zoutpannen van de Stagnone kunt meepakken — een paar kilometer verderop.</p><a class="btn" href="https://cantinefina.it/enoturismo/" target="_blank" rel="noopener">Officiële enoturismo ↗</a></div>
+<div class="winebox"><h3>Etna Wine · Passopisciaro</h3><p>De camper staat op het wijndomein. De officiële agricamperpagina noemt een tasting inbegrepen in het nachttarief; uitgebreidere proeverij en kelderbezoek zijn op aanvraag mogelijk.</p><p class="small" style="color:#f3ede1"><b>Tip:</b> vraag bij het inchecken meteen naar het uitgebreidere kelderbezoek — de standaard tasting in het nachttarief is vaak kort, en dit is dé avond om er wél de tijd voor te nemen.</p><a class="btn" href="https://www.etnawineagriturismo.com/en/agricamper.html" target="_blank" rel="noopener">Agricamper & tasting ↗</a></div></div>
+</section>
+
+
+<section class="page" id="wildcards">
+<h2>Wildcards · Etna → Luminoso</h2>
+<p class="lead">Sunseabeach is inmiddels als vaste stop in de hoofdroute opgenomen. Hieronder blijven alternatieve kustcampings als naslag staan.</p>
+<div class="grid">
+<div class="card"><h3>1 · La Spiaggetta · Sampieri</h3><p><b>De sterkste kandidaat.</b> Echte campercamping direct aan zee met grote uitgeruste camperplaatsen. ACSI noemt de camping aan zee, bij zandstrand; actuele reviews noemen winkels en restaurants op circa 0,8–1,2 km en een wandeling langs strand/rotsen naar de lungomare van Sampieri.</p><p><b>Waarom sterk:</b> strand, dorp te voet, bar/café en Sampieri-sfeer. <b>Waarom twijfel:</b> ligt dicht bij Luminoso en kan daardoor geografisch dubbel voelen.</p><a class="btn" href="https://la-spiaggetta.it/en/" target="_blank" rel="noopener">Officiële camping ↗</a></div>
+<div class="card"><h3>2 · Camping Di Vita Vera · Marina di Modica</h3><p>Kleine echte camping aan zee met circa 45 touringplaatsen volgens ADAC-informatie. Pitchup plaatst hem ongeveer 1 km van Marina di Modica en noemt directe toegang tot zandstrand en rotskust.</p><p><b>Waarom sterk:</b> meer kustplaatsgevoel en restaurants/supermarkt rond 800 m. <b>Waarom twijfel:</b> eenvoudiger camping en geen volledige camper-service volgens PiNCAMP.</p></div>
+<div class="card"><h3>3 · Camping Jonio · Catania</h3><p>Echte stadscamping op de rotskust met circa 80 touringplaatsen. Catania-centrum ligt ongeveer 5 km weg; busverbinding en stedelijke reuring zijn de reden om hem te overwegen.</p><p><b>Waarom sterk:</b> totaal andere sfeer en Catania. <b>Waarom twijfel:</b> lokale score circa 3,8/5; kleine pitches en wisselende klachten. Niet luxe genoeg voor een automatische plek in de route.</p></div>
+<div class="card"><h3>4 · Calanovella · Piraino</h3><p>Blijft wildcard voor de noordkust: zee, zwembad en voorzieningen.</p><p><b>Waarom niet vast:</b> grote maar middelmatige reviewbasis en te wisselende ervaringen voor juli.</p><a class="btn" href="https://www.calanovella.it/en/" target="_blank" rel="noopener">Officiële site ↗</a></div>
+</div>
+<div class="verdict"><b>Advies:</b> kies standaard <b>La Spiaggetta/Sampieri</b> — charme, strand en een klein authentiek kustdorp. <b>Di Vita Vera/Marina di Modica</b> is de één-op-één vervanger voor wie op dat moment meer reuring wil: promenade, beachclubs en meer restaurants. In de routeconfigurator zijn ze technisch wederzijds uitsluitend.</div>
+</section>
+
+<div id="destinationPages"></div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const camps=[
+{id:"pineta",title:"La Pineta",place:"San Vito lo Capo",group:"west",lat:38.1699,lon:12.7394,n:2,optional:null,url:"https://www.campinglapineta.it/english/",gallery:"https://www.campinglapineta.it/english/",rating:"4,1/5 · 2.591 Google-reviews",camper:"Grote uitgeruste camperzones; officiële site noemt campers expliciet.",feel:"Levendige, grote camping met pijnbomen en mediterrane begroeiing.",fac:"2 zwembaden · restaurant · pizzeria · market · sport",town:"San Vito ligt op circa 300–500 m van strand/campingcontext.",tip:"San Vito is de wereldhoofdstad van cous cous. Boek voor het diner altijd vooraf, vooral in juli, en vraag om buiten te zitten — de tuinen en terrassen zijn hier het decor, niet bijzaak.",spots:[
+["Zingaro per boot","Bootexcursie van circa 4 uur langs de zeven baaien van de Riserva dello Zingaro, met zwemstops bij Cala Uzzo en de Faraglioni di Scopello. Fijn alternatief voor de hike in de julihitte.","zien","https://www.sanvitoweb.com/en/boat-tour"],
+["Macari","Rustiger kustgevoel dan San Vito zelf en een van de mooiste zonsondergangen van West-Sicilië, tussen de rotsformaties bij Punta di Macari.","sfeer","https://www.google.com/maps/search/?api=1&query=Macari+San+Vito+Lo+Capo"],
+["Cous cous bij Profumi di Cous Cous","Michelin-vermeld restaurant in Hotel Ghibli: dineer tussen citroen- en mandarijnbomen in de tuin en kies de vis-cous cous 'San Vito'. Reserveer vooraf, zeker in het hoogseizoen.","eten","https://guide.michelin.com/en/sicilia/san-vito-lo-capo/restaurant/profumi-del-cous-cous"],
+["Gelato caldo-freddo","De lokale specialiteit: een warme amandel- of chocoladesaus over koud gelato. Vraag er simpelweg naar bij een ijssalon aan het lungomare, na je strandwandeling.","eten","https://www.google.com/maps/search/?api=1&query=gelateria+San+Vito+Lo+Capo"],
+["Monte Monaco","Vroege ochtendwandeling met panorama over de baai; neem ruim water mee en vermijd het middaguur.","zien","https://www.google.com/maps/search/?api=1&query=Monte+Monaco+San+Vito+Lo+Capo"]]},
+{id:"lilybeo",title:"Lilybeo Village",place:"Marsala",group:"west",lat:37.7480,lon:12.4962,n:2,optional:null,url:"https://www.campinglilybeovillage.it/en/",gallery:"https://www.campinglilybeovillage.it/en/",rating:"4,6/5 · 839 Google-reviews",camper:"RV-park/camping; 6A stroom en camper service volgens campinginformatie.",feel:"Kleinschalige, groene rustbasis; niet aan boulevard.",fac:"zwembad · solarium · wifi · barbecue/picknick · camper service",town:"Marsala ligt circa 9 km weg; camping is basis, niet avondwandeling naar stad.",tip:"Combineer Erice en Stagnone op één dag: 's ochtends de koelte en het uitzicht boven, aan het einde van de middag het gouden licht en de windmolens van de zoutpannen. Segesta is een mooie tussenstop op de rijdag zelf, vanaf San Vito.",spots:[
+["Tempio en theater van Segesta","Dorische tempel uit de 5e eeuw v.Chr. en een Grieks theater met een van de mooiste uitzichten van Sicilië over het dal. Niet te missen tussenstop op de rijdag van San Vito naar Marsala; ga vroeg of laat voor het beste licht en de minste hitte.","zien","https://www.sicilia.info/en/trapani/segesta/"],
+["Cantine Fina","Vaste wijnervaring op het domein met uitzicht richting de Stagnone en de Egadische eilanden. Reserveer de proeverij vooraf.","eten","https://cantinefina.it/enoturismo/"],
+["Stagnone & zoutpannen","Ga voor laat middaglicht: de oude windmolens van de zoutpannen kleuren dan roze-goud. Bootje naar Mothia (archeologisch Fenicisch eiland) kan vanaf de steiger bij de zoutpannen.","zien","https://it.wikipedia.org/wiki/Stagnone_di_Marsala"],
+["Erice · Maria Grammatico","Tussenstop op de verplaatsingsdag: het middeleeuwse bergdorp heeft een adembenemend uitzicht, en bij pasticceria Maria Grammatico proef je de amandelkoekjes en 'genovesi' waarmee ze wereldberoemd werd.","eten","https://www.mariagrammatico.it/"],
+["Marsala centrum","Piazza della Repubblica, wijnbars en een diner in het historische centrum; met de auto of taxi vanaf de camping.","sfeer","https://www.google.com/maps/search/?api=1&query=Piazza+della+Repubblica+Marsala"]]},
+{id:"rais",title:"Rais Gerbi",place:"Finale di Pollina",group:"noord",lat:38.0098,lon:14.1577,n:2,optional:null,url:"https://raisgerbi.it/en/",gallery:"https://raisgerbi.it/foto-campeggio-villaggio-cefalu/",rating:"4,4/5 · 953 Google-reviews",camper:"Echte camping; grote camperplaatsen volgens campingaanbod.",feel:"Zee, panoramisch zeewaterzwembad en directe Caletta del Pirata.",fac:"zeewaterzwembad · pizzeria · zee/snorkelen",town:"Gebruik voor Finale, Castelbuono en Madonie; Cefalù is niet het hoofddoel.",tip:"Ga in Castelbuono voor de 'testa di turco': een koud dessert van dunne gefrituurde deeglaagjes met melkroom en kaneel — anders dan de gelijknamige gebakken bol uit Scicli.",spots:[
+["Castelbuono","De reden om hier te overnachten: middeleeuws kasteel, Cappella Palatina en een van de mooiste bergdorpen van de Madonie.","zien","https://en.wikipedia.org/wiki/Castelbuono"],
+["Fiasconaro & testa di turco","De beroemde panettonebakker Fiasconaro begon hier als ijssalon op het plein. Proef de testa di turco, het typische koude dessert van Castelbuono met melkroom en kaneel.","eten","https://www.fiasconaro.com/"],
+["Madonie","Panoramische dagrit door bergen en beukenbossen; totaal ander Sicilië dan de kust.","zien","https://www.parcodellemadonie.it"],
+["Caletta del Pirata","Kleine baai direct bij de camping, goed voor snorkelen op een rustige campingdag.","sfeer","https://www.google.com/maps/search/?api=1&query=Caletta+del+Pirata+Finale+di+Pollina"]]},
+{id:"cirucco",title:"Centro Turistico Cirucco",place:"Capo Milazzo",group:"noord",lat:38.2629,lon:15.2352,n:2,optional:"cirucco",url:"https://www.pitchup.com/campsites/italy/sicilia/messina/milazzo/centro_turistico_cirucco/",gallery:"https://www.pitchup.com/campsites/italy/sicilia/messina/milazzo/centro_turistico_cirucco/",rating:"Camping.info: beperkte reviewbasis; sanitair 3,7/5",camper:"Touring/camperoptie wordt door campingplatforms aangeboden.",feel:"Locatiecamping: directe strandtoegang en Capo Milazzo wegen zwaarder dan luxe.",fac:"strand · bar/restaurant · kano/pedalo · watersport",town:"Niet op loopafstand van Milazzo-centrum; gekozen voor Capo en eilandlogistiek.",tip:"Koop bootjes naar de Eolische Eilanden vooraf online (Liberty Lines) en check de terugvaartijden lokaal — het vaarschema wijkt vaak af van de folder. Neem op Vulcano oude kleding mee voor het modderbad.",spots:[
+["Lipari + Vulcano per boot","Dagtocht met circa 2,5 uur op Lipari (ommuurde stad, kasteel) en een modderbad of kratertocht op Vulcano. Vertrek vanaf de haven van Milazzo.","zien","https://www.getyourguide.com/milazzo-l1163/vanuit-milazzo-dagtour-lipari-en-vulcano-t65077/"],
+["Piscina di Venere","Natuurlijk zwembad op Capo Milazzo; ga vroeg of laat vanwege de julihitte en de drukte.","zien","https://www.google.com/maps/search/?api=1&query=Piscina+di+Venere+Capo+Milazzo"],
+["Baia del Tono","Een van de mooiste zonsondergangsplekken van Capo Milazzo, met uitzicht over de baai.","sfeer","https://www.google.com/maps/search/?api=1&query=Baia+del+Tono+Capo+Milazzo"],
+["Milazzo lungomare","Castello, waterfront en een aperitivo met zicht op de Eolische Eilanden in de verte.","sfeer","https://www.google.com/maps/search/?api=1&query=Milazzo+lungomare+castello"]]},
+{id:"tindari",title:"Tindari Village",place:"Furnari",group:"noord",lat:38.1218,lon:15.1156,n:2,optional:null,url:"https://www.tindarivillage.com/en/index.php",gallery:"https://www.tindarivillage.com/en/gallery.php",rating:"4,5/5 · 453 Google-reviews",camper:"Camping/RV-park; plaatsen met en zonder schaduw.",feel:"Comfortabele zeebasis met meer vakantieparkgevoel dan Luminoso.",fac:"privéstrand · zwembad · whirlpool · bar · pizzeria · wifi publieke zones",town:"Voor Tindari/Marinello; Oliveri is de betere compacte avondstop.",tip:"Ga vroeg naar het Santuario voor de koelte en het uitzicht, en bewaar Oliveri voor de aperitivo — dat kleine dorp voelt veel authentieker dan het toeristische Tindari zelf.",spots:[
+["Santuario di Tindari","Bedevaartskerk met de zwarte Madonna, hoog op de klif; ga vroeg voor koelte en het beste uitzicht over de Laghetti di Marinello.","zien","https://www.santuariotindari.it"],
+["Laghetti di Marinello","De veranderlijke zandbanklagunes onder Tindari, goed te zien vanaf het uitzichtpunt bij het sanctuarium.","zien","https://it.wikipedia.org/wiki/Laghetti_di_Marinello"],
+["Taormina & Teatro Antico (optie)","Niet in de hoofdroute, maar circa 45–60 min rijden vanaf Tindari of Etna Wine. Overweeg als extra dagtrip als het programma ruimte biedt.","zien","https://en.wikipedia.org/wiki/Teatro_Antico_di_Taormina"],
+["Oliveri aperitivo","Kleiner en rustiger dan Tindari; een eenvoudige kustavond met aperitivo aan zee.","sfeer","https://www.google.com/maps/search/?api=1&query=Oliveri+Sicilia+lungomare"],
+["Portorosa","Jachthavenomgeving met restaurants als alternatief voor een avond uit eten.","sfeer","https://www.google.com/maps/search/?api=1&query=Marina+di+Portorosa"]]},
+{id:"etnawine",title:"Etna Wine Agricamper",place:"Passopisciaro / Etna Noord",group:"etna",lat:37.8798,lon:15.0225,n:1,optional:null,url:"https://www.etnawineagriturismo.com/en/agricamper.html",gallery:"https://www.etnawineagriturismo.com/en/agricamper.html",rating:"Agricamper op wijndomein · tasting inbegrepen volgens officiële site",camper:"Camperovernachting op het wijndomein met water, stroom, afvoer, toilet en warme douche.",feel:"Eén bewuste wijnnacht tussen de Etna-wijngaarden; geen kustcamping en geen stadsreuring.",fac:"zwembad · sanitair · warme douche · stroom · water · barbecue · tasting",town:"Passopisciaro/Etna Noord. Dit is een experience-stop: camper parkeren, proeven op het domein en slapen.",tip:"Vraag bij aankomst meteen naar de uitgebreide tasting met kelderbezoek — de tasting in het nachttarief is vaak beperkter dan je zou willen op zo'n bijzondere avond.",spots:[
+["Wijnproeverij op het domein","De overnachtingsprijs omvat volgens de officiële agricamperpagina een tasting van de Etna-wijnen; een uitgebreidere proeverij met kelderbezoek is op aanvraag mogelijk.","eten","https://www.etnawineagriturismo.com/en/agricamper.html"],
+["Etna Noord","Combineer met Piano Provenzana of een korte lavalandschapstop, afhankelijk van weer en actuele vulkaanrestricties.","zien","https://www.parcoetna.it"],
+["Gole dell'Alcantara","Basaltkloof met koel rivierwater; logische natuurstop op de route vanaf Tindari. Draag waterschoenen als je het water in wilt.","zien","https://www.visitsicily.info/en/the-gorges-of-alcantara-and-gorges-tiberius/"],
+["Voorraad doen","Er is weinig directe reuring rondom het domein; doe boodschappen voor de avond vooraf in Randazzo of Linguaglossa.","zien","https://www.google.com/maps/search/?api=1&query=supermercato+Randazzo"]]},
+{id:"spiaggetta",title:"La Spiaggetta",place:"Sampieri",group:"zuidoost",lat:36.7249,lon:14.7357,n:2,optional:"south",url:"https://la-spiaggetta.it/en/",gallery:"https://la-spiaggetta.it/en/",rating:"4,2/5 · 949 lokale reviews",camper:"Echte camping met grote uitgeruste camperplaatsen, stroom en drinkwater in de buurt.",feel:"Aanrader voor charme: rustige vissersplaats, lang strand en te voet richting lungomare.",fac:"strand · bar/pizzeria · grote camperplaatsen · kustwandeling",town:"Sampieri is klein en sfeervol; verwacht slow-life, geen uitbundig nachtleven.",tip:"Ga bij zonsondergang naar de Fornace Penna: de gouden avondzon op de kalksteenruïne is het mooiste moment van de dag, en 's nachts bij volle maan is de silhouet nog spectaculairder.",spots:[
+["Fornace Penna · 'de Mannara'","Vervallen bakstenenfabriek uit 1912, bekend als filmlocatie van Commissario Montalbano. Bezoek bij zonsopgang of -ondergang; naar binnen mag niet (instortingsgevaar).","zien","https://slow-sicily.com/fornace-penna-in-scicli-the-allure-of-montalbanos-mannara/"],
+["Sampieri lungomare","Te voet via strand of rotsenkust naar het dorp; sfeervolst bij golden hour.","sfeer","https://www.google.com/maps/search/?api=1&query=Lungomare+Sampieri"],
+["Pata Pata","Beachclub/avondplek in Sampieri voor een aperitivo met de voeten in het zand.","sfeer","https://www.google.com/maps/search/?api=1&query=Pata+Pata+Sampieri"],
+["Scicli","Makkelijk te combineren als avondje uit; Luminoso blijft de betere basis voor de baroksteden verderop in de reis.","zien","https://en.wikipedia.org/wiki/Scicli"]]},
+{id:"vitavera",title:"Camping Di Vita Vera",place:"Marina di Modica",group:"zuidoost",lat:36.7137,lon:14.7855,n:1,optional:"south",url:"https://www.camping.info/en/campsite/campeggio-di-vita-vera",gallery:"https://www.camping.info/en/campsite/campeggio-di-vita-vera",rating:"4,4/5 · 314 lokale reviews; ACSI 8,3 op kleine basis",camper:"Echte kustcamping met afgebakende, deels beschaduwde pitches.",feel:"Aanrader voor meer reuring: kustplaats, promenade, beachclubs en meer eetopties dichtbij.",fac:"directe kusttoegang · zandstrand/rotskust · ruime pitches",town:"Circa 1 km van Marina di Modica; restaurant, snackbar, winkel en supermarkt rond 800 m volgens ADAC/PiNCAMP.",tip:"Marina di Modica heeft meer promenade-reuring dan Sampieri; ga hier als je na een dag baroksteden bekijken zin hebt in een levendige strandavond met keuze uit meerdere beachclubs.",spots:[
+["Marina di Modica promenade","Voetgangerspromenade langs zee, strand en een levendige zomeravond met veel restaurants.","sfeer","https://www.google.com/maps/search/?api=1&query=Marina+di+Modica+lungomare"],
+["Corallo Food & Beach","Beachclub/foodplek direct aan het strand van Marina di Modica, goed voor lunch of aperitivo met de voeten in het zand.","eten","https://www.google.com/maps/search/?api=1&query=Corallo+Food+Beach+Marina+di+Modica"],
+["Fornace Penna","Ook vanaf hier te voet of per fiets bereikbaar via het strand; dezelfde iconische Montalbano-locatie als bij Sampieri.","zien","https://slow-sicily.com/fornace-penna-in-scicli-the-allure-of-montalbanos-mannara/"],
+["Marina di Ragusa fietsen","De enige plek in Sicilië met een echt fietspad langs de kust; huur een fiets bij de haven (Rasi Rent) en rijd langs de witte zandstranden.","sfeer","https://www.google.com/maps/search/?api=1&query=Marina+di+Ragusa+lungomare"],
+["Pozzallo","Optionele extra kustavond met een andere, iets grotere havenstad-sfeer.","sfeer","https://en.wikipedia.org/wiki/Pozzallo"]]},
+{id:"sunsea",title:"Sunseabeach Camping",place:"Marzamemi / Pachino",group:"zuidoost",lat:36.7366,lon:15.1055,n:1,optional:null,url:"https://www.sunseabeach-camping.it/",gallery:"https://www.sunseabeach-camping.it/",rating:"Camping aan zee in de Marzamemi/Pachino-zone",camper:"Echte camping met kampeerplaatsen; geschikt als vaste camperbasis.",feel:"Kustbasis voor Marzamemi, San Lorenzo, Vendicari en het Nero d'Avola-land rond Pachino.",fac:"zee · zwembad · pizzeria · wifi · kampeerplaatsen",town:"Sterke sfeerstap tussen West-Sicilië en Luminoso: vissersdorp, natuurreservaat en stranden.",tip:"Ga laat in de middag naar Marzamemi: eerst door de oude tonnara en Piazza Regina Margherita, daarna aperitivo en diner wanneer het dorp in warm avondlicht komt.",spots:[
+["Marzamemi","Historisch vissersdorp rond de oude tonnara en Piazza Regina Margherita; het mooist vanaf eind middag tot na zonsondergang.","sfeer","https://www.google.com/maps/search/?api=1&query=Marzamemi+Sicilia"],
+["Riserva di Vendicari","Kustnatuurreservaat met wandelroutes, baaien en vogelgebieden. Ga vroeg vanwege de julihitte en neem ruim water mee.","zien","https://www.riserva-vendicari.it/"],
+["San Lorenzo","Helder water en lichte zandstranden ten noorden van Marzamemi; goede stranddag vanaf de camping.","zien","https://www.google.com/maps/search/?api=1&query=San+Lorenzo+beach+Noto+Sicily"],
+["Pachino & Nero d'Avola","Pachino ligt midden in het wijngebied van de Nero d'Avola. Combineer een korte wijnstop met boodschappen voor de camper.","eten","https://www.google.com/maps/search/?api=1&query=winery+Pachino+Nero+d%27Avola"],
+["Portopalo di Capo Passero","Optionele rit naar het uiterste zuidoosten van Sicilië, waar Ionische Zee en Middellandse Zee samenkomen.","zien","https://www.google.com/maps/search/?api=1&query=Portopalo+di+Capo+Passero"]]},
+{id:"luminoso",title:"Luminoso Camping",place:"Punta Braccetto",group:"zuidoost",lat:36.81746,lon:14.46606,n:2,optional:null,url:"https://www.campingluminoso.com/en/",gallery:"https://www.campingluminoso.com/en/our-facility/",rating:"4,6/5 · 1.092 Google-reviews",camper:"Echte camping met pitches; officiële site noemt zes accommodatietypen inclusief pitches.",feel:"Verzorgde, kleinschaliger strandcamping; sterkste pure campingfinish.",fac:"privéstrand · 27 privébadkamers · 12 warme douches · zeezicht-jacuzzi",town:"Punta Braccetto zelf is rustig; de waarde zit in Scicli, Modica, Ragusa Ibla en Marina di Ragusa.",tip:"Plan Ragusa Ibla aan het eind van de middag: loop bij zonsondergang de 242 treden van Via Scale op naar Santa Maria delle Scale voor het mooiste uitzicht, en blijf hangen tot de gevels verlicht worden.",spots:[
+["Scicli","Topaanrader voor eind middag en avond: rustiger dan Modica en Ragusa, met sfeervolle barokke kerken en smalle straatjes.","zien","https://en.wikipedia.org/wiki/Scicli"],
+["Modica · Antica Dolceria Bonajuto","Oudste chocoladefabriek van Sicilië (sinds 1880), met koud verwerkte chocolade volgens Azteeks recept. Proef de tavolette met sinaasappel of peperoncino, of een warme cioccolata alla Xicara.","eten","https://www.bonajuto.it/en/"],
+["Castello di Donnafugata","19e-eeuws neogotisch landhuis met een groot kostuummuseum en een stenen doolhof in de tuin; bekend van Commissario Montalbano. Ga vroeg of laat om de tourbussen voor te zijn, gesloten op maandag.","zien","https://castellodonnafugata.org/visita/"],
+["Punta Secca · Casa di Montalbano","Vissersdorpje vlak bij Punta Braccetto met het beroemde 'huis van Montalbano' op het strand en trattoria Enzo a Mare ernaast; leuk voor een strandwandeling of vislunch.","eten","https://www.visitvigata.com/casa-montalbano-punta-secca/"],
+["Ragusa Ibla bij zonsondergang","Beklim de 242 treden van Via Scale naar Santa Maria delle Scale voor het beste uitzicht; blijf tot de gevels verlicht worden voor de mooiste sfeer van de dag.","sfeer","https://www.reischeck.nl/bezienswaardigheden-ragusa/"],
+["Diner met uitzicht in Ibla","Meerdere terrasjes rond de Piazza Duomo en Largo Camerina serveren traditionele Siciliaanse gerechten met uitzicht op de barokke gevels; reserveer in het hoogseizoen.","eten","https://www.tripadvisor.com/RestaurantsNear-g194872-d2343947-Ragusa_Ibla-Ragusa_Province_of_Ragusa_Sicily.html"]]},
+{id:"giardini",title:"Area Camper Lagani",place:"Giardini Naxos",group:"oost",lat:37.8278,lon:15.2672,n:2,optional:null,url:"https://www.google.com/maps/search/?api=1&query=Area+Camper+Lagani+Giardini+Naxos",gallery:"https://www.google.com/maps/search/?api=1&query=Area+Camper+Lagani+Giardini+Naxos",rating:"Sterk beoordeelde camperbasis in Giardini Naxos",camper:"Camperarea in plaats van klassieke camping; gekozen vanwege de uitzonderlijk goede ligging voor strand, boulevard en horeca te voet.",feel:"Twee avonden waarop de camper blijft staan: boulevard, strand, restaurants en zomerleven van Giardini Naxos liggen dichtbij.",fac:"camperplaatsen · servicebasis · strand en boulevard dichtbij",town:"Giardini Naxos is hier de bestemming: lange kustpromenade, veel restaurants en een levendige zomeravond.",tip:"Gebruik één dag voor Giardini Naxos zelf en één dag voor Taormina. Ga met bus/taxi naar Taormina zodat de camper kan blijven staan; keer terug voor diner aan de boulevard.",spots:[
+["Giardini Naxos lungomare","Lange promenade met stranden, restaurants, bars en gelaterie. Dit is de reden dat deze stop Tindari vervangt.","sfeer","https://www.google.com/maps/search/?api=1&query=Lungomare+Giardini+Naxos"],
+["Taormina","Plan een vroege of late dagtrip en laat de camper staan. Teatro Antico, Corso Umberto en uitzicht op Etna en zee.","zien","https://www.google.com/maps/search/?api=1&query=Taormina+Teatro+Antico"],
+["Schisò & haven","Wandel richting de haven en het archeologische gebied; combineer met aperitivo aan zee.","sfeer","https://www.google.com/maps/search/?api=1&query=Porto+di+Giardini+Naxos"],
+["Strandavond","Houd één avond bewust leeg: zwemmen, douchen en daarna lopend eten langs de kust.","eten","https://www.google.com/maps/search/?api=1&query=restaurants+lungomare+Giardini+Naxos"]]},
+{id:"airporthotel",title:"Magaggiari Hotel Resort",place:"Cinisi / Palermo Airport",group:"slot",lat:38.1669,lon:13.1066,n:1,optional:null,url:"https://www.magaggiarihotelresort.it/",gallery:"https://www.magaggiarihotelresort.it/",rating:"Sterk beoordeeld luchthavenhotel in Cinisi",camper:"Geen camperovernachting: camper op 20 juli terugbrengen bij Vemacar en daarna naar het hotel.",feel:"Comfortabele logistieke slotnacht dicht bij Palermo Airport, zodat de vlucht van 11:00 zonder lange ochtendrit begint.",fac:"hotel · zwembad · restaurant · dicht bij luchthaven",town:"Cinisi, vlak bij Palermo Airport. Bewust praktisch als afsluiting na de camperreis.",tip:"Lever de camper op 20 juli in bij Vemacar en ga daarna naar het hotel. Regel de luchthaventransfer vooraf bij het hotel.",spots:[["Hotelavond","Zwembad, diner en vroeg naar bed. Na San Vito geen extra sightseeing meer plannen.","sfeer","https://www.magaggiarihotelresort.it/"],["Palermo Airport","De volgende ochtend rechtstreeks naar Falcone Borsellino Airport voor de vlucht van 11:00.","zien","https://www.aeroportodipalermo.it/"],["Vemacar inleveren","Bevestig vooraf schriftelijk dat de camper op 20 juli kan worden ingeleverd.","zien","https://www.vemacar.it/"]]},
+{id:"olimpo",title:"Campeggio Olimpo",place:"Sant'Elia / Santa Flavia",group:"noordwest",lat:38.0918,lon:13.5355,n:2,optional:null,url:"https://campeggioolimpo.com/",gallery:"https://campeggioolimpo.com/",rating:"Sterk beoordeelde kustcamping bij Sant'Elia",camper:"Echte camping met camperplaatsen; gekozen vanwege de combinatie van campingrust en een karaktervol vissersdorp te voet.",feel:"Een sterke match met jullie reisstijl: camper laten staan en lopen naar Kafara en het vissersdorp Sant'Elia, met Porticello en Bagheria vlakbij.",fac:"camperplaatsen · sanitair · schaduw · strand dichtbij · dorp te voet",town:"Sant'Elia en Kafara liggen dichtbij; Porticello, Solunto en Bagheria zijn korte uitstappen.",tip:"Loop op de aankomstavond naar Sant'Elia. Gebruik de volle dag voor Porticello en Solunto. Bewaar Villa Palagonia in Bagheria voor de vertrekdag richting Vemacar en Mondello.",spots:[
+["Sant'Elia","Klein vissersdorp rond een smalle baai met huizen direct aan het water. Ga eind middag en blijf voor de avond.","sfeer","https://www.google.com/maps/search/?api=1&query=Sant%27Elia+Santa+Flavia+Sicilia"],
+["Kafara","Kleine kustzone vlak bij de camping voor zwemmen en een rustige strandmiddag.","sfeer","https://www.google.com/maps/search/?api=1&query=Kafara+Santa+Flavia"],
+["Porticello","Actieve vissershaven met visrestaurants en een veel lokaler karakter dan een klassieke badplaats.","eten","https://www.google.com/maps/search/?api=1&query=Porticello+Santa+Flavia"],
+["Solunto","Archeologische stad op Monte Catalfano met oude stratenstructuur en uitzicht over de kust.","zien","https://www.google.com/maps/search/?api=1&query=Area+Archeologica+di+Solunto"],
+["Villa Palagonia · Bagheria","Excentrieke 18e-eeuwse villa, beroemd om de groteske beelden. Logische stop op weg naar de camperinlevering.","zien","https://www.villapalagonia.it/"]]},
+{id:"laplaya",title:"La Playa Camping Internazionale",place:"Isola delle Femmine",group:"slot",lat:38.1968,lon:13.2496,n:1,optional:null,url:"https://www.laplayacamping.it/en/",gallery:"https://www.laplayacamping.it/en/",rating:"Kustcamping bij Isola delle Femmine",camper:"Echte camping aan zee met schaduwrijke kampeerplaatsen.",feel:"Slotnacht volgens de La Pineta-maatstaf: zee en het dorp Isola delle Femmine op loopafstand, met bars, restaurants en viszaken.",fac:"zee · schaduw · sanitair · dorp en station te voet",town:"Isola delle Femmine ligt op enkele minuten lopen.",tip:"Gebruik deze nacht voor een rustige laatste kustavond. Als de camper op 20 juli al bij Vemacar kan worden ingeleverd, is Mondello ook aantrekkelijk: in zomer 2026 rijdt dagelijks een directe shuttle Mondello → Palermo Airport.",spots:[
+["Isola delle Femmine centrum","Loop het dorp in voor bars, gelato, pasticcerie en visrestaurants; dit is de belangrijkste reden om La Playa als slotcamping te kiezen.","sfeer","https://www.google.com/maps/search/?api=1&query=Isola+delle+Femmine+centro"],
+["Haven van Isola delle Femmine","Kleine vissershaven voor een eenvoudige laatste avond aan zee en verse vis.","sfeer","https://www.google.com/maps/search/?api=1&query=Porto+Isola+delle+Femmine"],
+["Mondello","Optionele laatste strandmiddag als de Vemacar-inlevering op 20 juli geregeld is. Voor 15 juni–31 oktober 2026 is een directe Mondello–Airport shuttle aangekondigd.","zien","https://www.google.com/maps/search/?api=1&query=Mondello+Beach"],
+["Palermo Airport","Controleer de shuttle of regel een taxi ruim vooraf voor de vlucht van 11:00.","zien","https://www.aeroportodipalermo.it/"]]},
+{id:"palermo",title:"Palermo slotnacht",place:"Via Montepellegrino-regio",group:"slot",lat:38.1373,lon:13.3576,n:1,optional:null,url:"https://www.vemacar.it/",gallery:"https://www.vemacar.it/",rating:"Logistieke stop — nog geen definitieve camping",camper:"Slotplek moet worden gekozen op basis van Vemacar-inlevertijd.",feel:"Geen vakantiebestemming; risicobeheersing voor vlucht 11:00.",fac:"doel: dicht bij Vemacar · snelle inlevering · vroege luchthavenroute",town:"Via Montepellegrino 157 is het bekende camper-serviceadres.",tip:"Gebruik de vakantieochtend van 20 juli voor de markten van Palermo: ga vroeg naar Ballarò voor de volle sfeer, en sluit af met een arancina en een panelle-broodje voor het naar bed gaan.",spots:[
+["Mercato di Ballarò","Palermo's oudste en levendigste markt, met kooplui die hun 'abbanniata' zingen. Ga tussen 8 en 12 uur voor de volle sfeer en probeer een sfincione als ontbijt.","sfeer","https://doeatbetterexperience.com/blog/ballaro-market-palermo-food-guide/"],
+["Arancina & panelle","De klassieke Palermitaanse streetfood: arancina (gevulde rijstbal, in Palermo vrouwelijk!) en een broodje panelle e crocchè met kikkererwtenkoekjes en aardappelkroketten.","eten","https://www.worldtravelconnector.com/palermo-food-markets-guide/"],
+["Cappella Palatina (indien tijd)","Byzantijnse gouden mozaïeken in het Palazzo dei Normanni, op loopafstand van Ballarò. Alleen haalbaar als je vroeg begint en de Vemacar-inlevertijd het toelaat.","zien","https://en.wikipedia.org/wiki/Cappella_Palatina"],
+["Vemacar","Bevestig de uiterste inlevertijd schriftelijk vooraf.","zien","https://www.vemacar.it/"],
+["Palermo Airport","Mik op 08:00–08:30 aanwezig voor de vlucht van 11:00.","zien","https://www.google.com/maps/search/?api=1&query=Aeroporto+Falcone+Borsellino+Palermo"]]}
+];
+const routeOrder=["olimpo","rais","etnawine","sunsea","vitavera","luminoso","lilybeo","pineta","airporthotel"];
+const routeCamps=routeOrder.map(id=>camps.find(c=>c.id===id));
+const pages=[["overzicht","Overzicht"],["kaart","Kaart & route"],["dagen","Dagen"],["praktisch","Praktisch"],["wijn","Wijn"],["wildcards","Wildcards"],...routeCamps.map(c=>[c.id,c.title])];
+const nav=document.getElementById("nav");
+pages.forEach((p,i)=>{const b=document.createElement("button");b.textContent=p[1];b.dataset.page=p[0];if(i===0)b.classList.add("active");nav.appendChild(b)});
+function show(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"});if(id==="kaart")setTimeout(()=>map.invalidateSize(),100)}
+nav.addEventListener("click",e=>{if(e.target.dataset.page)show(e.target.dataset.page)});
+const cards=document.getElementById("destinationCards"), destPages=document.getElementById("destinationPages");
+camps.forEach(c=>{
+ destPages.insertAdjacentHTML("beforeend",`<section class="page" id="${c.id}"><button class="btn alt" onclick="show('overzicht')">← Overzicht</button><h2>${c.title} · ${c.place}</h2>
+ <div class="dest-hero"><div class="dest-copy"><h3>Verblijfscamping / plek</h3><p>${c.feel}</p><div class="facts"><div class="fact"><b>Waardering</b>${c.rating}</div><div class="fact"><b>Camper</b>${c.camper}</div><div class="fact"><b>Voorzieningen</b>${c.fac}</div><div class="fact"><b>Omgeving</b>${c.town}</div></div><div class="quicklinks"><a class="btn" href="${c.url}" target="_blank" rel="noopener">Campinginfo ↗</a><a class="btn alt" href="${c.gallery}" target="_blank" rel="noopener">Foto's ↗</a><a class="btn alt" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(c.title+" "+c.place)}" target="_blank" rel="noopener">Google Maps ↗</a></div></div>
+ <div class="photo-frame"><iframe loading="lazy" src="${c.gallery}" title="Actuele campingimpressie ${c.title}"></iframe><div class="photo-fallback"><b>Actuele campingimpressie:</b> dit vak toont de officiële camping- of galerijpagina. Blokkeert de website iframe-weergave? Gebruik “Open fotobron”; er wordt dan géén verkeerde vervangende foto getoond.</div></div></div>
+ ${c.tip?`<div class="tipbox"><b>Tip:</b> ${c.tip}</div>`:""}
+ <h2 style="font-size:2rem;margin-top:28px">Hotspots rond deze basis</h2>
+ <div class="legend"><span><i style="background:var(--sea)"></i>Bezienswaardigheid</span><span><i style="background:var(--orange)"></i>Eten &amp; drinken</span><span><i style="background:var(--wine)"></i>Sfeer &amp; ambiance</span></div>
+ <div class="hotspots">${c.spots.map(s=>{const cat=s[2]||"zien";const catLabel=cat==="eten"?"🍽 Eten &amp; drinken":cat==="sfeer"?"🌇 Sfeer":"📍 Bezienswaardigheid";const link=s[3]?`<a class="sl" href="${s[3]}" target="_blank" rel="noopener">Meer info ↗</a>`:"";return `<div class="spot cat-${cat}"><span class="cattag cat-${cat}">${catLabel}</span><h3>${s[0]}</h3><p>${s[1]}</p>${link}</div>`}).join("")}</div></section>`);
+});
+
+// Tussenstop-hoogtepunten: opvallende plekken die je onderweg passeert maar die geen overnachting zijn.
+const highlights=[
+ {after:"pineta",title:"Riserva dello Zingaro per boot",place:"Vanaf San Vito lo Capo",note:"Zeven baaien per boot i.p.v. de hike in de julihitte; boek vooraf.",parent:"pineta"},
+ {after:"lilybeo",title:"Segesta · tempel & theater",place:"Onderweg San Vito → Marsala",note:"Dorische tempel en Grieks theater; ga vroeg of laat voor het beste licht.",parent:"lilybeo"},
+ {after:"lilybeo",title:"Stagnone & zoutpannen",place:"Bij Marsala",note:"Windmolens in gouden avondlicht; combineer met Cantine Fina.",parent:"lilybeo"},
+ {after:"cirucco",title:"Lipari & Vulcano per boot",place:"Vanaf Milazzo",note:"Alleen relevant als je Cirucco/Milazzo inschakelt.",parent:"cirucco"},
+ {after:"etnawine",title:"Gole dell'Alcantara",place:"Onderweg naar Etna",note:"Basaltkloof met koel rivierwater; waterschoenen aanraden.",parent:"etnawine"},
+ {after:"luminoso",title:"Ragusa Ibla bij zonsondergang",place:"Bij Luminoso",note:"242 treden naar Santa Maria delle Scale; blijf tot de gevels verlicht zijn.",parent:"luminoso"},
+ {after:"palermo",title:"Mercato di Ballarò",place:"Palermo, laatste ochtend",note:"Vroeg heen voor de volle marktsfeer, vlak voor het inleveren van de camper.",parent:"palermo"}
+];
+function renderTimeline(){
+ let html="";
+ html+=`<div class="spot cat-zien click" onclick="show('kaart')"><span class="cattag cat-zien">🚐 Start · 7 juli 15:00</span><h3>Camper ophalen bij Vemacar</h3><p>Via Montepellegrino 157, Palermo — bevestig meteen ook de uiterste inlevertijd voor het einde van de reis.</p><span class="sl">Route bekijken →</span></div>`;
+ routeCamps.forEach((c,i)=>{
+  const cat=c.optional==="south"?"sfeer":c.optional?"eten":"zien";
+  const catLabel=cat==="sfeer"?"🔀 Kies één · alternatief":cat==="eten"?"🧭 Optioneel":`📍 Stop ${i+1}`;
+  html+=`<div class="spot cat-${cat} click" onclick="show('${c.id}')"><span class="cattag cat-${cat}">${catLabel}</span><h3>${c.title}</h3><p>${c.feel}</p><span class="sl">Bekijk bestemming →</span></div>`;
+  highlights.filter(h=>h.after===c.id).forEach(h=>{
+   html+=`<div class="spot cat-onderweg click" onclick="show('${h.parent}')"><span class="cattag cat-onderweg">★ Onderweg · ${h.place}</span><h3>${h.title}</h3><p>${h.note}</p><span class="sl">Bekijk bij ${camps.find(x=>x.id===h.parent).title} →</span></div>`;
+  });
+ });
+ html+=`<div class="spot cat-zien click" onclick="show('kaart')"><span class="cattag cat-zien">🚐 Einde · 20–21 juli</span><h3>Inleveren Vemacar & vlucht 11:00</h3><p>Bouw ruim marge in vanaf Palermo naar de luchthaven; zie de Praktisch-pagina voor de checklist.</p><span class="sl">Route bekijken →</span></div>`;
+ cards.innerHTML=html;
+}
+renderTimeline();
+const defs=routeCamps,state={};defs.forEach(c=>state[c.id]=c.n);const pickup={title:"Vemacar",lat:38.1373,lon:13.3576};
+function enabled(c){ return true }
+function active(){return defs.filter(enabled)}
+
+const defaultState={}; defs.forEach(c=>defaultState[c.id]=c.n);
+function saveRoute(){
+ const data={nights:state};
+ localStorage.setItem("sicilieRoute2026v7",JSON.stringify(data));
+}
+function loadRoute(){
+ try{
+  const d=JSON.parse(localStorage.getItem("sicilieRoute2026v7")||"null"); if(!d)return;
+  Object.assign(state,d.nights||{});
+ }catch(e){}
+}
+function dateNL(d){return d.toLocaleDateString("nl-NL",{day:"numeric",month:"long"});}
+function renderDays(){
+ const box=document.getElementById("dynamicDays"); if(!box)return;
+ let d=new Date(2026,6,7), html="";
+ active().forEach((c,i)=>{
+   const n=state[c.id]||0; if(n<1)return;
+   const arrival=new Date(d); const departure=new Date(d); departure.setDate(departure.getDate()+n);
+   const label=n===1?dateNL(arrival):`${dateNL(arrival)} – ${dateNL(new Date(departure.getFullYear(),departure.getMonth(),departure.getDate()-1))}`;
+   html+=`<div class="day"><h3>${label} · ${c.title}</h3><span class="pill">${c.place} · ${n} nacht${n>1?"en":""}${c.id==="airporthotel"?" · zonder camper":""}</span><p>${c.feel}</p><p><b>Hieromheen plannen:</b> ${c.spots.map(s=>s[0]).join(" · ")}</p><button class="btn alt" onclick="show('${c.id}')">Open bestemmingspagina</button></div>`;
+   d=departure;
+ });
+ const total=active().reduce((a,c)=>a+(state[c.id]||0),0);
+ if(total!==14) html=`<div class="notice"><b>Planning nog niet definitief:</b> je hebt ${total} van 14 nachten verdeeld. Pas de route aan; de data hieronder schuiven automatisch mee.</div>`+html;
+ box.innerHTML=html;
+}
+function controls(){const box=document.getElementById("nightControls");box.innerHTML="";active().forEach(c=>box.insertAdjacentHTML("beforeend",`<div class="night"><label>${c.title}</label><input id="n_${c.id}" type="number" min="0" max="14" value="${state[c.id]}"> nacht(en)</div>`));box.querySelectorAll("input").forEach(i=>i.addEventListener("input",e=>{state[e.target.id.slice(2)]=Math.max(0,+e.target.value||0);saveRoute();draw()}))}
+const map=L.map("routeMap").setView([37.5,14.2],7);L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:"&copy; OpenStreetMap contributors"}).addTo(map);const ml=L.layerGroup().addTo(map),rl=L.layerGroup().addTo(map);
+const cities=[["Erice",38.037,12.587],["Marsala",37.798,12.434],["Milazzo",38.2207,15.2411],["Tindari",38.1406,15.0458],["Noto",36.8918,15.0707],["Marzamemi",36.7425,15.1187],["Scicli",36.7901,14.7059],["Modica",36.8588,14.7608],["Ragusa Ibla",36.9259,14.7417],["Marina di Ragusa",36.7857,14.5548]];
+cities.forEach(c=>L.marker([c[1],c[2]],{icon:L.divIcon({className:"city",iconSize:[18,18]})}).addTo(map).bindPopup(`<b>${c[0]}</b>`));
+function fmt(m){return Math.floor(m/60)+"u "+String(m%60).padStart(2,"0")}
+function draw(){ml.clearLayers();rl.clearLayers();renderDays();const cs=active(),routeCs=cs.filter(c=>c.id!=="airporthotel"),pts=[pickup,...routeCs,pickup];routeCs.forEach((c,i)=>L.marker([c.lat,c.lon],{icon:L.divIcon({className:"num",html:i+1,iconSize:[32,32]})}).addTo(ml).bindPopup(`<b>${c.title}</b><br>${state[c.id]} nacht(en)<br><a href="#" onclick="show('${c.id}');return false">Open subpagina</a>`));L.marker([pickup.lat,pickup.lon],{icon:L.divIcon({className:"num",html:"P",iconSize:[32,32]})}).addTo(ml).bindPopup("<b>Vemacar</b><br>Via Montepellegrino 157");
+ const nights=cs.reduce((a,c)=>a+state[c.id],0);document.getElementById("nightCount").textContent=nights;document.getElementById("campCount").textContent=routeCs.length;document.getElementById("nightWarning").innerHTML=nights===14?"<b>Route compleet · 14 nachten.</b> De dagplanning loopt nu t/m 20 juli.":`<b>${nights}/14 nachten verdeeld.</b> ${nights<14?"Nog "+(14-nights)+" nacht(en) toevoegen.":(nights-14)+" nacht(en) schrappen."}`;
+ const fallback=L.polyline(pts.map(p=>[p.lat,p.lon]),{dashArray:"8 7",weight:4}).addTo(rl);map.fitBounds(L.latLngBounds(pts.map(p=>[p.lat,p.lon])).pad(.06));const coords=pts.map(p=>`${p.lon},${p.lat}`).join(";");
+ fetch(`https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`).then(r=>r.json()).then(d=>{const r=d.routes[0];rl.removeLayer(fallback);L.geoJSON(r.geometry,{style:{weight:5,opacity:.8}}).addTo(rl);document.getElementById("totalKm").textContent=Math.round(r.distance/1000)+" km";document.getElementById("totalTime").textContent=fmt(Math.round(r.duration/60));const box=document.getElementById("routeLegs");box.innerHTML="";r.legs.forEach((l,i)=>box.insertAdjacentHTML("beforeend",`<div class="leg"><b>${pts[i].title} → ${pts[i+1].title}</b><br>${Math.round(l.distance/1000)} km · ${fmt(Math.round(l.duration/60))} netto</div>`))}).catch(()=>{document.getElementById("totalKm").textContent="offline";document.getElementById("totalTime").textContent="—"})}
+document.getElementById("resetRoute").addEventListener("click",()=>{
+ localStorage.removeItem("sicilieRoute2026v7"); location.reload();
+});
+document.querySelectorAll("[data-check]").forEach(cb=>{
+ cb.checked=localStorage.getItem("check_"+cb.dataset.check)==="1";
+ cb.addEventListener("change",()=>localStorage.setItem("check_"+cb.dataset.check,cb.checked?"1":"0"));
+});
+loadRoute(); controls(); draw();
+</script>
+</body></html>
